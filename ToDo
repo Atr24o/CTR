@@ -1,0 +1,31 @@
+1- Front:
+    - página de entrada;    ()
+    - página de cadastro;   ()
+    - página de login;      ()
+    - págna de equipes:     ()
+        - página de trabalhos lançados pra equipe;  ()
+        - página de envio de trabalhos;             ()
+DESIGNAÇÃO: ARTHUR
+
+2- Back:
+    - ligar o front com o banco de dados local      ()
+    - banco:
+        -lista de equipes;   ()
+            *ID_Funcionário
+            *Nome_Funcionário
+            *Função
+        -lista de trabalhos; ()
+            *ID_Trabalho
+            *ID_Funcionário
+            *Data_entrega
+            *Status_trabalho
+DESIGNAÇÃO: VICTOR
+
+3- App:
+    - reecriar as paginas front portando para celular           ()
+    - ligar o banco de dados com mysql ao banco de dados local  ()
+DESIGNAÇÃO: GABRIEL x2
+
+4- TCC:
+    - Documentar todo o processo do trabalho e seu progresso    ()
+DESIGNAÇÃO: os outro ai

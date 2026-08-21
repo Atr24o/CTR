@@ -1,0 +1,60 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-color: #715243;
+}
+
+header{
+    background-color: #513830;
+    text-align: left;
+    align-content: top; 
+    padding: 10px;
+    height: 60px;
+    top: 0;
+    width: 98.46%;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 30px;
+}
+
+h1 {
+    margin: 0;
+    background-clip: text;
+    color: white
+}
+
+#intro{
+    background: #AA8370;
+    width: 80%;
+    height:60%;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    border-radius: 20px;
+    transform: translateY(-50%) translateX(-50%);
+    overflow: hidden;
+}
+
+#intro #dir{
+    right: -100px;
+    border-radius: 0px 20px 20px 0px;
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    position: absolute;
+    mask-image: linear-gradient(to left, rgba(0,0,0,1)0%, rgba(0,0,0,1)95%, rgba(0,0,0,0)100%);
+}
+
+#intro #esq{
+    left: -100px;
+    border-radius: 20px 0px 0px 20px;
+    height: 100%;
+    width: auto;
+    object-fit: cover;
+    position: absolute;
+}
+
+#intro #carta{
+    height: 10%;
+    width: auto;
+    z-index: 100000;
+}
