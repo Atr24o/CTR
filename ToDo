@@ -1,7 +1,7 @@
 1- Front:
-    - página de entrada;    ()
-    - página de cadastro;   ()
-    - página de login;      ()
+    - página de entrada;    (X)
+    - página de cadastro;   (X)
+    - página de login;      (X)
     - págna de equipes:     ()
         - página de trabalhos lançados pra equipe;  ()
         - página de envio de trabalhos;             ()
@@ -12,8 +12,9 @@ DESIGNAÇÃO: ARTHUR
     - banco:
         -lista de equipes;   ()
             *ID_Funcionário
+            *Email
             *Nome_Funcionário
-            *Função
+            *Senha
         -lista de trabalhos; ()
             *ID_Trabalho
             *ID_Funcionário
