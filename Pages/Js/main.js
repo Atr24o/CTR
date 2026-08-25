@@ -56,7 +56,7 @@ function atualizarInterfaceUsuario() {
             botaoUser.setAttribute('data-text', usuario.nome || 'Usuário');
             const icon = botaoUser.querySelector('img');
             if (icon) {
-                icon.style.border = '2px solid #4CAF50';
+                icon.style.border = '2px solid #4caf4f00';
                 icon.style.borderRadius = '50%';
             }
         } else {
