@@ -1,18 +1,5 @@
-body {
-    margin: 0;
-    padding: 0;
-    background-color: #A08E7E;
-}
-
-header{
-    background-color: #513830;
-    text-align: left;
-    align-content: top; 
-    padding: 10px;
-    height: 60px;
-    top: 0;
-    width: 98.46%;
-    font-size: 30px;
+#PgCad body {
+    height: 750px;
 }
 
 h1, h2 {
@@ -100,3 +87,8 @@ p{
 a{
     color: #513830;
 }
+
+small {
+    color: #513830;
+    margin-bottom: 5px;
+}   

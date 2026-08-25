@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CTR</title>
     <link rel="stylesheet" href="css/CadLog.css">
+    <link rel="stylesheet" href="css/BaseKit.css">
 </head>
 <body>
     <header>
@@ -17,12 +18,15 @@
             <input type="text" id="nome" placeholder="Digite seu nome aqui" />
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="Digite seu email aqui" />
-            <label for="nome">senha</label>
+            <label for="senha">senha</label>
             <input type="password" id="senha" placeholder="Minimo 6 caracteres" />
-            <label for="nome">confirmar senha</label>
+            <label for="senha">confirmar senha</label>
             <input type="password" id="senha_confirmação" placeholder="Minimo 6 caracteres" />
-            <label for="nome">profissão</label>
+            <label for="profissao">profissão</label>
             <input type="text" id="profissão" placeholder="Digite seu cargo aqui" />
+            <label for="fotoPerfil">Foto de Perfil</label>
+            <input type="file" id="fotoPerfil" accept="image/*" />
+            <small>Selecione uma imagem para seu perfil</small>
             <a href="Login.html">
                 <button>
                     Criar conta
@@ -31,8 +35,5 @@
             <p>já tem uma conta?<br><a href="Login.html" id="troca">entre na sua conta aqui</a></p>
         </div>
     </div>
-    <footer>
-        
-    </footer>
 </body>
 </html>
