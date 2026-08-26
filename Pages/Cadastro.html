@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CTR</title>
+    <title>CTR - Cadastro</title>
     <link rel="stylesheet" href="css/CadLog.css">
     <link rel="stylesheet" href="css/BaseKit.css">
 </head>
@@ -16,27 +16,28 @@
         <div class="grupo-input">
             <label for="nome">Nome Completo</label>
             <input type="text" id="nome" placeholder="Digite seu nome aqui" />
+            
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="Digite seu email aqui" />
-            <label for="senha">senha</label>
-            <input type="password" id="senha" placeholder="Minimo 6 caracteres" />
-            <label for="senha">confirmar senha</label>
-            <input type="password" id="senha_confirmação" placeholder="Minimo 6 caracteres" />
-            <label for="profissao">profissão</label>
-            <input type="text" id="profissão" placeholder="Digite seu cargo aqui" />
-            <label for="fotoPerfil">Foto de Perfil</label>
-            <input type="file" id="fotoPerfil" accept="image/*" />
-            <small>Selecione uma imagem para seu perfil</small>
-            <a href="Login.html">
-                <button>
-                    Criar conta
-                </button>
-            </a>
+            
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" placeholder="Mínimo 8 caracteres" />
+            
+            <label for="conf_senha">Confirmar Senha</label>
+            <input type="password" id="conf_senha" placeholder="Mínimo 8 caracteres" />
+            
+            <label for="profissao">Profissão</label>
+            <input type="text" id="profissao" placeholder="Digite seu cargo aqui" />
+            
+            <button onclick="cadastrar()">
+                Criar conta
+            </button>
+            
             <p>já tem uma conta?<br><a href="Login.html" id="troca">entre na sua conta aqui</a></p>
         </div>
     </div>
-    <footer>
-        
-    </footer>
+    
+    <!-- ⬇️ ARQUIVO JS SEPARADO ⬇️ -->
+    <script src="js/cadastro.js"></script>
 </body>
 </html>
