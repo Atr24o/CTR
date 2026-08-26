@@ -1,21 +1,21 @@
 class Usuario:
     """Modelo de Usuário"""
 
-    def __int__(self, id=None, nome=None, email=None, senha=None, profissao=None):
+    def __init__(self, id=None, nome=None, email=None, senha=None, profissao=None):
         self.id = id
         self.nome = nome
         self.email = email
         self.senha = senha
         self.profissao = profissao
 
-    def to dict(self):
-    """Converte o objeto para dicionário"""
-    return{
-        'id': self.id,
-        'nome': self.nome,
-        'email': self.email,
-        'profissao' : self.profissao
-    }
+    def to_dict(self):
+        """Converte o objeto para dicionário"""
+        return{
+            'id': self.id,
+            'nome': self.nome,
+            'email': self.email,
+            'profissao' : self.profissao
+        }
 
     @classmethod
     def from_dict(cls, dados):

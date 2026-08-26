@@ -7,28 +7,25 @@ import hashlib
 
 app = Flask(__name__)
 app.secret_key = '7pr0j3t07ctr7'
-CORS(app) # Permite que o front-end acesse a API
+CORS(app)  # Permite que o front-end acesse a API
 
 dao = UsuarioDAO()
 validadores = Validadores()
 
-
-
-# ROTAS DE AUTH
+# ========== ROTAS DE AUTH ==========
 
 # CADASTRO
 @app.route('/api/cadastrar', methods=['POST'])
 def cadastrar():
-    """Rota para cadastro de usúario"""
+    """Rota para cadastro de usuário"""
     dados = request.json
 
     # Valida campos obrigatórios
-    if not dados.get('nome') or not dados.get ('email') or not dados.get ('senha'):
-        return jsonify({'erro':  'Todos os campos são obrigatórios'}), 400
+    if not dados.get('nome') or not dados.get('email') or not dados.get('senha'):
+        return jsonify({'erro': 'Todos os campos são obrigatórios'}), 400
 
-     # Valida email
-
-     if not validadores.validar_email(dados['eamil']):
+    # Valida email
+    if not validadores.validar_email(dados['email']):
         return jsonify({'erro': 'Email inválido'}), 400
 
     # Valida senha (mínimo 8 caracteres)
@@ -36,7 +33,7 @@ def cadastrar():
         return jsonify({'erro': 'Senha deve ter no mínimo 8 caracteres'}), 400
 
     # Verifica se senhas coincidem
-    if dados.get('senha') != dado.get('conf_senha'):
+    if dados.get('senha') != dados.get('conf_senha'):
         return jsonify({'erro': 'As senhas estão diferentes'}), 400
 
     # Verifica se email já existe
@@ -52,7 +49,7 @@ def cadastrar():
         profissao=dados.get('profissao', '')
     )
 
-    resultado = dao.insert(usuario)
+    resultado = dao.inserir(usuario)
     if resultado:
         return jsonify({
             'mensagem': 'Cadastro realizado com sucesso!',
@@ -61,34 +58,36 @@ def cadastrar():
     else:
         return jsonify({'erro': 'Erro ao cadastrar usuário'}), 500
 
-    # LOGIN
-    @app.route('/api/login', methods=['POST'])
-    def login():
-        """Rota para login de usuário"""
-        dados = request.json
 
-        if not dados.get('email') or not dados.get(senha):
-            return jsonify({'erro': 'Email e senha são obrigatórios'}), 400
+# LOGIN
+@app.route('/api/login', methods=['POST'])
+def login():
+    """Rota para login de usuário"""
+    dados = request.json
 
-        # Busca usuário pelo email
-        usuario = dao.buscar_por_email(dados['email'])
-    
-        if not usuario:
-            return jsonify({'erro': 'Usuário não encontrado'}), 404
+    if not dados.get('email') or not dados.get('senha'):
+        return jsonify({'erro': 'Email e senha são obrigatórios'}), 400
 
-        # Verifica senha
-        senha_hash = hashlib.sha256(dados['senha'].encode()).hexdigest()
-        if usuario.senha != senha_hash:
-            return jsonify({'erro': 'Senha incorreta'}), 401
+    # Busca usuário pelo email
+    usuario = dao.buscar_por_email(dados['email'])
 
-        # Cria sessão (login)
-        session['usuario_id'] = usuario.id
-        session['usuario_nome'] = usuario.nome
+    if not usuario:
+        return jsonify({'erro': 'Usuário não encontrado'}), 404
 
-        return jsonify({
+    # Verifica senha
+    senha_hash = hashlib.sha256(dados['senha'].encode()).hexdigest()
+    if usuario.senha != senha_hash:
+        return jsonify({'erro': 'Senha incorreta'}), 401
+
+    # Cria sessão (login)
+    session['usuario_id'] = usuario.id
+    session['usuario_nome'] = usuario.nome
+
+    return jsonify({
         'mensagem': 'Login realizado com sucesso!',
         'usuario': {'id': usuario.id, 'nome': usuario.nome, 'email': usuario.email}
     }), 200
+
 
 # LOGOUT
 @app.route('/api/logout', methods=['POST'])
@@ -96,6 +95,7 @@ def logout():
     """Rota para logout"""
     session.clear()
     return jsonify({'mensagem': 'Logout realizado com sucesso'}), 200
+
 
 @app.route('/api/verificar_sessao', methods=['GET'])
 def verificar_sessao():
@@ -120,6 +120,7 @@ def listar_usuarios():
     usuarios = dao.buscar_todos()
     return jsonify([u.to_dict() for u in usuarios]), 200
 
+
 @app.route('/api/usuarios/<int:id>', methods=['GET'])
 def buscar_usuario(id):
     """Busca um usuário específico"""
@@ -128,6 +129,7 @@ def buscar_usuario(id):
         return jsonify(usuario.to_dict()), 200
     else:
         return jsonify({'erro': 'Usuário não encontrado'}), 404
+
 
 @app.route('/api/usuarios/<int:id>', methods=['PUT'])
 def atualizar_usuario(id):
@@ -152,6 +154,7 @@ def atualizar_usuario(id):
     else:
         return jsonify({'erro': 'Erro ao atualizar'}), 500
 
+
 @app.route('/api/usuarios/<int:id>', methods=['DELETE'])
 def deletar_usuario(id):
     """Deleta um usuário"""
@@ -163,7 +166,18 @@ def deletar_usuario(id):
 
 # ========== INICIALIZAÇÃO ==========
 
+from flask import send_from_directory
+
+# Servir arquivos HTML
+@app.route('/')
+def index():
+    return send_from_directory('../Pages', 'Login.html')
+
+@app.route('/<path:filename>')
+def serve_static(filename):
+    return send_from_directory('../Pages', filename)
+
 if __name__ == '__main__':
-    # Cria a tabela ao iniciar
+    # Cria a tabela apenas se não existir
     dao.criar_tabela()
-    app.run(debug=True, host='0.0.0.0', port=5000)
+    app.run(debug=False, host='0.0.0.0', port=5000)

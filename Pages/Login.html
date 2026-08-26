@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CTR</title>
+    <title>CTR - Login</title>
     <link rel="stylesheet" href="css/CadLog.css">
+    <link rel="stylesheet" href="css/BaseKit.css">
 </head>
 <body>
     <header>
@@ -15,15 +16,19 @@
         <div class="grupo-input">
             <label for="email">Email</label>
             <input type="email" id="email" placeholder="Digite seu email aqui" />
-            <label for="nome">senha</label>
-            <input type="password" id="senha" placeholder="Minimo 6 caracteres" />
-            <a href="Main_page.html">
-                <button>
-                    Entrar
-                </button>
-            </a>
+            
+            <label for="senha">Senha</label>
+            <input type="password" id="senha" placeholder="Mínimo 8 caracteres" />
+            
+            <button onclick="login()">
+                Entrar
+            </button>
+            
             <p>sem uma conta?<br><a href="Cadastro.html">Cadastre sua conta aqui</a></p>
         </div>
     </div>
+    
+    <!-- ⬇️ ARQUIVO JS SEPARADO ⬇️ -->
+    <script src="js/login.js"></script>
 </body>
 </html>

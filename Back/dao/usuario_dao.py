@@ -1,7 +1,7 @@
 from conexao import db
 from models.usuario import Usuario
 
-class UsuarioDao:
+class UsuarioDAO:
     """Data Access Object para Usuário"""
 
     @staticmethod
@@ -20,9 +20,9 @@ class UsuarioDao:
         db.conectar()
         db.executar_query(sql)
         db.desconectar()
-        print("Tabela 'usuarios' criada/verificada com sucesso")
+        print("✅ Tabela 'usuarios' criada/verificada com sucesso")
 
-        @staticmethod
+    @staticmethod
     def inserir(usuario):
         """Insere um novo usuário no banco"""
         sql = "INSERT INTO usuarios (nome, email, senha, profissao) VALUES (%s, %s, %s, %s)"
@@ -38,7 +38,6 @@ class UsuarioDao:
             return usuario
         return None
     
-    # Os outros métodos (buscar_todos, buscar_por_id, etc) permanecem iguais
     @staticmethod
     def buscar_todos():
         sql = "SELECT id, nome, email, profissao, data_criacao FROM usuarios"
@@ -47,6 +46,9 @@ class UsuarioDao:
         resultados = db.executar_query(sql)
         db.desconectar()
         
+        if not resultados:
+            return []
+            
         usuarios = []
         for row in resultados:
             usuarios.append(Usuario.from_dict(row))
