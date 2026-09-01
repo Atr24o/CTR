@@ -1,17 +1,18 @@
 body {
     margin: 0;
     padding: 0;
-    background-color: #A08E7E;
+    background-color: #D6c7b2;
+    overflow-x: hidden;
 }
 
 header{
-    background-color: #513830;
+    background-color: #2e221d;
     text-align: left;
     align-content: top; 
     padding: 10px;
     height: 60px;
     top: 0;
-    width: 98.46%;
+    width: 100%;
     font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
     font-size: 30px;
 }
@@ -31,7 +32,7 @@ h1 {
     border-radius: 12px;
     padding: 8px;
     cursor: pointer;
-    position: fixed;
+    position: absolute;
     top: 5px;
     right: 20px;
     z-index: 1000;
