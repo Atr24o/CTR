@@ -1,0 +1,187 @@
+
+#lista{
+    border-left: 3px #513830 solid;
+    width: 20%;
+    height: 80%;
+    position: absolute;
+    left: 77%;
+    top: 15%;
+    background-color: transparent;
+    border-radius: 0px 20px 20px 0px;
+    padding: 10px;
+    font-family: Arial, Helvetica, sans-serif;
+    flex-direction: column;
+}
+
+p{
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#equipe{
+    overflow-y: auto;
+    height: 90%;
+}
+
+#convidados{
+    height: 80%;
+    overflow-y: auto;
+}
+
+.grid{
+    height: fit-content;
+    width: auto;
+    display: grid;
+    grid-template-rows: 100, 1fr;
+    gap:  5px;
+}
+
+#membros{
+    background-color: #ffebcdc8;
+    width: auto;
+    height: fit-content;
+    border-radius: 10px;
+    padding: 5px;
+}
+
+#convites{
+    overflow: hidden;
+    position: absolute;
+    height: 40%;
+    width: 70%;
+    left: 5%;
+    top: 50%;
+    border-top: 1px solid #513830;
+    padding: 10px;
+}
+
+#convite {
+    background-color: #ffebcdc8;
+    width: auto;
+    height: 70px;
+    border-radius: 10px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    gap: 20px;
+}
+
+#convite p {
+    flex: 1
+}
+
+#equipe::-webkit-scrollbar {
+    width: 8px;
+}
+
+#equipe::-webkit-scrollbar-track {
+    background: #f1f1f148;
+    border-radius: 10px;
+}
+
+#equipe::-webkit-scrollbar-thumb {
+    background: #513830;
+    border-radius: 10px;
+}
+
+#equipe::-webkit-scrollbar-thumb:hover {
+    background: #3a261e;
+}
+
+#convidados::-webkit-scrollbar {
+    width: 8px;
+}
+
+#convidados::-webkit-scrollbar-track {
+    background: #f1f1f148;
+    border-radius: 10px;
+}
+
+#convidados::-webkit-scrollbar-thumb {
+    background: #513830;
+    border-radius: 10px;
+}
+
+#convidados::-webkit-scrollbar-thumb:hover {
+    background: #3a261e;
+}
+
+#entrar{
+    position: relative;
+    top: 5%;
+    width: 80%;
+    height: 40%;
+    border-radius: 20px;
+    border: 2px solid #3a261e;
+    background-color: #AA8370;
+    color: white;
+    font-size: 15px;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+#entrar:hover{
+    background-color: #785d50;
+    color: rgb(198, 198, 198);
+}
+
+#convite button{
+    height: 60%;
+    width: 10%;
+    border-radius: 30px;
+    border: 1px solid #3a261e;
+    background-color: #785d50;
+    color: white;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+#aceitar:hover{
+    background-color: #AA8370;
+}
+
+#recusar:hover{
+    background-color: #3a261e;
+}
+
+#grupos{
+    background-color: #ffebcdc8;
+    width: auto;
+    height:100px;
+    display: flex;
+    border-radius: 10px;
+    flex-direction: column; /* Adicione esta linha */
+    justify-content: center;
+    align-items: center; /* Para centralizar horizontalmente */
+}
+
+.hgrid {
+    height: 100%;
+    display: grid;
+    grid-auto-flow: column;
+    grid-auto-columns: 200px; /* Largura fixa para cada grupo */
+    gap: 15px;
+    align-items: center;
+    padding: 0 10px;
+}
+
+#grupo{
+    overflow: hidden;
+    position: absolute;
+    height: 40%;
+    width: 70%;
+    left: 5%;
+    top: 15%;
+    border-top: 1px solid #513830;
+    padding: 10px;
+}
+
+#grupos{
+    background-color: #ffebcdc8;
+    width: auto;
+    height:150px;
+    display: flex;
+    justify-content: center;
+}
