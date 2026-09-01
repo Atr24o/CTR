@@ -1,5 +1,10 @@
 import mysql.connector
 from mysql.connector import Error
+import os
+from dotenv import load_dotenv
+
+# Carrega as variáveis do arquivo .env
+load_dotenv()
 
 class Database:
     def __init__(self):
@@ -9,15 +14,18 @@ class Database:
     def conectar(self):
         try:
             self.connection = mysql.connector.connect(
-                host='localhost',
-                user='root',
-                password='Mhbl@2024',
-                database='ctr_db',
-                port=3306,
-                buffered=True  # Adiciona buffered=True para evitar "Unread result found"
+                host=os.getenv('DB_HOST', 'localhost'),
+                user=os.getenv('DB_USER', 'root'),
+                password=os.getenv('DB_PASSWORD', ''),
+                database=os.getenv('DB_NAME', 'ctr_db'),
+                port=int(os.getenv('DB_PORT', 3306)),
+                buffered=True,
+                connection_timeout=15,
+                ssl_disabled=False,
+                ssl_verify_cert=False
             )
             self.cursor = self.connection.cursor(dictionary=True, buffered=True)
-            print("[OK] Conectado ao MySQL")
+            print(f"[OK] Conectado ao MySQL em {os.getenv('DB_HOST', 'localhost')}")
             return True
         except Error as e:
             print(f"[ERRO] Falha ao conectar: {e}")
@@ -46,7 +54,6 @@ class Database:
                 print("[ERRO] Sem conexão")
                 return None
 
-            # Limpa resultados pendentes
             if self.cursor:
                 try:
                     self.cursor.fetchall()

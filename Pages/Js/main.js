@@ -69,6 +69,19 @@ function atualizarInterfaceUsuario() {
     }
 }
 
+// ===== REDIRECIONAMENTO DO BOTÃO DO USUÁRIO =====
+function redirecionarUsuario() {
+    usuarioLogado = verificarSessao();
+    
+    if (usuarioLogado) {
+        // Se estiver logado, vai para perfil.html
+        window.location.href = 'perfil.html';
+    } else {
+        // Se não estiver logado, vai para Cadastro.html
+        window.location.href = 'Cadastro.html';
+    }
+}
+
 // ===== MODAL =====
 function mostrarAviso() {
     const modal = document.getElementById('modalAviso');
@@ -112,10 +125,20 @@ function iniciarPagina() {
     const linkEntrar = document.getElementById('linkEntrar');
     const linkCriar = document.getElementById('linkCriar');
     const modal = document.getElementById('modalAviso');
+    const botaoUser = document.getElementById('user');
 
     console.log('🔍 Elementos encontrados:');
     console.log('  - linkEntrar:', linkEntrar ? '✅' : '❌');
     console.log('  - linkCriar:', linkCriar ? '✅' : '❌');
+    console.log('  - botaoUser:', botaoUser ? '✅' : '❌');
+
+    // Adiciona evento ao botão do usuário
+    if (botaoUser) {
+        botaoUser.addEventListener('click', function(event) {
+            event.preventDefault();
+            redirecionarUsuario();
+        });
+    }
 
     if (linkEntrar) {
         linkEntrar.addEventListener('click', verificarLogin);
@@ -151,3 +174,4 @@ if (document.readyState === 'loading') {
 window.fazerLogin = fazerLogin;
 window.fazerLogout = fazerLogout;
 window.verificarSessao = verificarSessao;
+window.redirecionarUsuario = redirecionarUsuario;
