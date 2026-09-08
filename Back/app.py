@@ -1,12 +1,17 @@
-from flask import Flask, request, jsonify, session
+from flask import Flask, request, jsonify, session, send_from_directory
 from flask_cors import CORS
 from dao.usuario_dao import UsuarioDAO
 from models.usuario import Usuario
 from utils.validadores import Validadores
 import hashlib
+import os
+from dotenv import load_dotenv
+
+# Carrega as variáveis do arquivo .env
+load_dotenv()
 
 app = Flask(__name__)
-app.secret_key = '7pr0j3t07ctr7'
+app.secret_key = os.getenv('SECRET_KEY', '7pr0j3t07ctr7')
 CORS(app)  # Permite que o front-end acesse a API
 
 dao = UsuarioDAO()
@@ -164,9 +169,7 @@ def deletar_usuario(id):
         return jsonify({'erro': 'Erro ao deletar'}), 500
 
 
-# ========== INICIALIZAÇÃO ==========
-
-from flask import send_from_directory
+# ========== SERVIR ARQUIVOS HTML ==========
 
 # Servir arquivos HTML
 @app.route('/')
@@ -177,7 +180,12 @@ def index():
 def serve_static(filename):
     return send_from_directory('../Pages', filename)
 
+
+# ========== INICIALIZAÇÃO ==========
+
 if __name__ == '__main__':
     # Cria a tabela apenas se não existir
     dao.criar_tabela()
     app.run(debug=False, host='0.0.0.0', port=5000)
+
+#oi
