@@ -187,3 +187,5 @@ if __name__ == '__main__':
     # Cria a tabela apenas se não existir
     dao.criar_tabela()
     app.run(debug=False, host='0.0.0.0', port=5000)
+
+#oi
