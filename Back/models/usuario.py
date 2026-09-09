@@ -10,11 +10,11 @@ class Usuario:
 
     def to_dict(self):
         """Converte o objeto para dicionário"""
-        return{
+        return {
             'id': self.id,
             'nome': self.nome,
             'email': self.email,
-            'profissao' : self.profissao
+            'profissao': self.profissao
         }
 
     @classmethod
