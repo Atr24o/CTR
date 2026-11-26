@@ -54,20 +54,155 @@
 
 #convites{
     position: absolute;
-    height: 10%;
+    height: auto;
+    min-height: 300px;
+    max-height: 500px;
     width: 70%;
     left: 5%;
     top: 30%;
-    border-top: 1px solid #513830;
-    padding: 10px;
+    border-top: 2px solid #513830;
+    padding: 20px 10px;
+}
+
+#convites > p {
+    font-size: 20px;
+    font-weight: bold;
+    color: #513830;
+    margin-bottom: 15px;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 #convite{
-    background-color: #ffebcdc8;
+    background: linear-gradient(135deg, #fff5e6 0%, #ffebcd 100%);
     width: auto;
-    height: 70px;
+    height: auto;
+    min-height: 160px;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0 4px 12px rgba(81, 56, 48, 0.15);
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    position: relative;
+    overflow: hidden;
+}
+
+#convite::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 5px;
+    height: 100%;
+    background: linear-gradient(180deg, #AA8370 0%, #785d50 100%);
+}
+
+#convite:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 20px rgba(81, 56, 48, 0.25);
+    border-color: #AA8370;
+}
+
+#convite p {
+    margin: 8px 0;
+    color: #513830;
+    line-height: 1.5;
+}
+
+#convite p strong {
+    font-size: 18px;
+    color: #2e221d;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+#convite button {
+    width: 100%;
+    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    color: white;
+    border: none;
+    padding: 12px 20px;
     border-radius: 10px;
-    padding-right: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    margin-top: 15px;
+    transition: all 0.3s ease;
+    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+#convite button:hover {
+    background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+    transform: scale(1.02);
+    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+}
+
+#convite button:active {
+    transform: scale(0.98);
+}
+
+/* Estilos para os parágrafos dentro do card */
+#convite p:first-child {
+    margin-top: 0;
+}
+
+#convite .equipe-info {
+    background: rgba(255, 255, 255, 0.5);
+    padding: 8px 12px;
+    border-radius: 8px;
+    margin: 5px 0;
+    font-size: 13px;
+}
+
+/* Grid melhorado para os cards */
+#convidados .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 20px;
+    padding: 10px 0;
+}
+
+/* Responsividade */
+@media (max-width: 768px) {
+    #convites {
+        width: 90%;
+        left: 5%;
+    }
+
+    #convidados .grid {
+        grid-template-columns: 1fr;
+    }
+}
+
+/* Animação de entrada */
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+#convite {
+    animation: slideIn 0.4s ease-out;
+}
+
+/* Estilo para quando não há equipes */
+#convite.vazio {
+    text-align: center;
+    padding: 40px;
+    background: rgba(255, 235, 205, 0.3);
+    border: 2px dashed #AA8370;
+}
+
+#convite.vazio p {
+    color: #999;
+    font-size: 16px;
 }
 
 label {

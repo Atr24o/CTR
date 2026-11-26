@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTR - Enviar Trabalho</title>
+
+    <!-- ⬇️ CSS AQUI ⬇️ -->
+    <link rel="stylesheet" href="css/BaseKit.css">
+    <link rel="stylesheet" href="css/Envio.css">
+</head>
+<body id="PgEnvio">
+    <header>
+        <h1>CTR</h1>
+        <a href="Cadastro.html">
+            <button id="user" data-text="Visitante">
+                <img src="css/images/User.png" alt="Icon-user" class="logo-do-botao">
+            </button>
+        </a>
+    </header>
+
+    <div id="formulario-envio">
+        <h2>Enviar Novo Trabalho</h2>
+
+        <div class="form-grupo">
+            <label for="titulo">Título do Trabalho</label>
+            <input type="text" id="titulo" placeholder="Digite o título do trabalho aqui" value="teste" />
+        </div>
+
+        <div class="form-grupo">
+            <label for="responsavel">Responsável</label>
+            <select id="responsavel">
+                <option value="">Selecione um membro da equipe</option>
+                <option value="teste1">teste</option>
+                <option value="teste2">teste</option>
+                <option value="teste3">teste</option>
+                <option value="teste4">teste</option>
+            </select>
+        </div>
+
+        <div class="form-grupo">
+            <label for="data-entrega">Data de Entrega</label>
+            <input type="date" id="data-entrega" value="2026-12-31" />
+        </div>
+
+        <div class="form-grupo">
+            <label for="prioridade">Prioridade</label>
+            <select id="prioridade">
+                <option value="baixa">Baixa</option>
+                <option value="media" selected>Média</option>
+                <option value="alta">Alta</option>
+                <option value="urgente">Urgente</option>
+            </select>
+        </div>
+
+        <div class="form-grupo">
+            <label for="categoria">Categoria</label>
+            <select id="categoria">
+                <option value="">Selecione uma categoria</option>
+                <option value="desenvolvimento">Desenvolvimento</option>
+                <option value="design">Design</option>
+                <option value="documentacao">Documentação</option>
+                <option value="teste">Teste</option>
+                <option value="reuniao">Reunião</option>
+                <option value="outro">Outro</option>
+            </select>
+        </div>
+
+        <div class="form-grupo">
+            <label for="descricao">Descrição do Trabalho</label>
+            <textarea id="descricao" rows="6" placeholder="Descreva os detalhes do trabalho aqui">teste</textarea>
+        </div>
+
+        <div class="form-grupo">
+            <label for="tags">Tags (separadas por vírgula)</label>
+            <input type="text" id="tags" placeholder="Ex: frontend, bug, urgente" value="teste, teste, teste" />
+        </div>
+
+        <div class="form-grupo">
+            <label for="anexos">Anexos</label>
+            <input type="file" id="anexos" multiple />
+            <p class="file-info">Arquivos suportados: PDF, DOC, DOCX, XLS, XLSX, ZIP, imagens</p>
+        </div>
+
+        <div id="preview-anexos" style="display: none;">
+            <h4>Arquivos Selecionados:</h4>
+            <ul id="lista-anexos"></ul>
+        </div>
+
+        <div class="form-grupo checkbox-grupo">
+            <label>
+                <input type="checkbox" id="notificar-equipe" checked />
+                Notificar toda a equipe sobre este trabalho
+            </label>
+        </div>
+
+        <div class="form-grupo checkbox-grupo">
+            <label>
+                <input type="checkbox" id="permitir-comentarios" checked />
+                Permitir comentários no trabalho
+            </label>
+        </div>
+
+        <div id="acoes-formulario">
+            <button id="btn-enviar" onclick="enviarTrabalho()">
+                Enviar Trabalho
+            </button>
+            <button id="btn-rascunho" onclick="salvarRascunho()">
+                Salvar como Rascunho
+            </button>
+            <a href="Trabalhos_Lancados.html">
+                <button id="btn-cancelar" type="button">
+                    Cancelar
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div id="lista-rascunhos">
+        <h3>Rascunhos Salvos</h3>
+        <div class="rascunho-item">
+            <div class="rascunho-info">
+                <h4>TESTE - Rascunho 1</h4>
+                <p>Salvo em: teste</p>
+            </div>
+            <div class="rascunho-acoes">
+                <button class="btn-carregar">Carregar</button>
+                <button class="btn-excluir">Excluir</button>
+            </div>
+        </div>
+
+        <div class="rascunho-item">
+            <div class="rascunho-info">
+                <h4>TESTE - Rascunho 2</h4>
+                <p>Salvo em: teste</p>
+            </div>
+            <div class="rascunho-acoes">
+                <button class="btn-carregar">Carregar</button>
+                <button class="btn-excluir">Excluir</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Sucesso -->
+    <div id="modal-sucesso" class="modal" style="display: none;">
+        <div class="modal-content">
+            <h2>✓ Trabalho Enviado com Sucesso!</h2>
+            <p>O trabalho foi lançado para a equipe.</p>
+            <button onclick="fecharModalSucesso()">OK</button>
+        </div>
+    </div>
+
+    <!-- ⬇️ JAVA SCRIPT AQUI ⬇️ -->
+    <script src="Js/storage.js"></script>
+    <script src="Js/envio_trabalhos.js"></script>
+    <script src="Js/main.js"></script>
+</body>
+</html>

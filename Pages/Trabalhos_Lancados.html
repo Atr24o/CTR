@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CTR - Trabalhos Lançados</title>
+
+    <!-- ⬇️ CSS AQUI ⬇️ -->
+    <link rel="stylesheet" href="css/BaseKit.css">
+    <link rel="stylesheet" href="css/Trabalhos.css">
+</head>
+<body id="PgTrabalhos">
+    <header>
+        <h1>CTR</h1>
+        <a href="Cadastro.html">
+            <button id="user" data-text="Visitante">
+                <img src="css/images/User.png" alt="Icon-user" class="logo-do-botao">
+            </button>
+        </a>
+    </header>
+
+    <div id="titulo-secao">
+        <h2>Trabalhos Lançados para a Equipe</h2>
+        <div style="display: flex; gap: 10px;">
+            <a href="Envio_Trabalhos.html" id="link-novo-trabalho" style="display: none;">
+                <button id="novo-trabalho">
+                    + Enviar Novo Trabalho
+                </button>
+            </a>
+        </div>
+    </div>
+
+    <div id="filtros">
+        <select id="filtro-status">
+            <option value="todos">Todos os Status</option>
+            <option value="pendente">Pendente</option>
+            <option value="em_andamento">Em Andamento</option>
+            <option value="concluido">Concluído</option>
+            <option value="atrasado">Atrasado</option>
+        </select>
+
+        <!-- Botão para gerenciar membros (apenas para líder) -->
+        <button id="btn-gerenciar-membros" style="display: none; margin-left: 15px; background: #007bff; color: white; border: none; padding: 10px 20px; border-radius: 8px; cursor: pointer;">
+            👥 Gerenciar Membros
+        </button>
+    </div>
+
+    <!-- Modal de Gerenciar Membros -->
+    <div id="modal-membros" class="modal" style="display: none;">
+        <div class="modal-content" style="max-width: 600px;">
+            <span class="fechar-modal" onclick="fecharModalMembros()">&times;</span>
+            <h2>Gerenciar Membros da Equipe</h2>
+
+            <div style="margin: 20px 0;">
+                <h3>Convidar Novo Membro</h3>
+                <div style="display: flex; gap: 10px; margin-top: 10px;">
+                    <input type="email" id="email-novo-membro" placeholder="Digite o email do membro" style="flex: 1; padding: 10px; border: 2px solid #ddd; border-radius: 5px;">
+                    <button onclick="enviarConviteEquipe()" style="background: #28a745; color: white; border: none; padding: 10px 20px; border-radius: 5px; cursor: pointer;">Enviar Convite</button>
+                </div>
+            </div>
+
+            <hr style="margin: 20px 0;">
+
+            <div>
+                <h3>Membros Atuais</h3>
+                <div id="lista-membros-equipe" style="max-height: 300px; overflow-y: auto;">
+                    <!-- Membros serão carregados aqui -->
+                </div>
+            </div>
+
+            <hr style="margin: 20px 0;">
+
+            <div>
+                <h3>Convites Pendentes</h3>
+                <div id="lista-convites-pendentes" style="max-height: 200px; overflow-y: auto;">
+                    <!-- Convites serão carregados aqui -->
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="lista-trabalhos">
+        <div class="trabalho-card">
+            <div class="trabalho-header">
+                <h3>TESTE - Trabalho 1</h3>
+                <span class="status pendente">Pendente</span>
+            </div>
+            <div class="trabalho-info">
+                <p><strong>Responsável:</strong> teste</p>
+                <p><strong>Data de Entrega:</strong> teste</p>
+                <p><strong>Descrição:</strong> teste</p>
+            </div>
+            <div class="trabalho-acoes">
+                <button class="btn-detalhes">Ver Detalhes</button>
+                <button class="btn-editar">Editar</button>
+            </div>
+        </div>
+
+        <div class="trabalho-card">
+            <div class="trabalho-header">
+                <h3>TESTE - Trabalho 2</h3>
+                <span class="status em_andamento">Em Andamento</span>
+            </div>
+            <div class="trabalho-info">
+                <p><strong>Responsável:</strong> teste</p>
+                <p><strong>Data de Entrega:</strong> teste</p>
+                <p><strong>Descrição:</strong> teste</p>
+            </div>
+            <div class="trabalho-acoes">
+                <button class="btn-detalhes">Ver Detalhes</button>
+                <button class="btn-editar">Editar</button>
+            </div>
+        </div>
+
+        <div class="trabalho-card">
+            <div class="trabalho-header">
+                <h3>TESTE - Trabalho 3</h3>
+                <span class="status concluido">Concluído</span>
+            </div>
+            <div class="trabalho-info">
+                <p><strong>Responsável:</strong> teste</p>
+                <p><strong>Data de Entrega:</strong> teste</p>
+                <p><strong>Descrição:</strong> teste</p>
+            </div>
+            <div class="trabalho-acoes">
+                <button class="btn-detalhes">Ver Detalhes</button>
+                <button class="btn-editar">Editar</button>
+            </div>
+        </div>
+
+        <div class="trabalho-card">
+            <div class="trabalho-header">
+                <h3>TESTE - Trabalho 4</h3>
+                <span class="status atrasado">Atrasado</span>
+            </div>
+            <div class="trabalho-info">
+                <p><strong>Responsável:</strong> teste</p>
+                <p><strong>Data de Entrega:</strong> teste</p>
+                <p><strong>Descrição:</strong> teste</p>
+            </div>
+            <div class="trabalho-acoes">
+                <button class="btn-detalhes">Ver Detalhes</button>
+                <button class="btn-editar">Editar</button>
+            </div>
+        </div>
+
+        <div class="trabalho-card">
+            <div class="trabalho-header">
+                <h3>TESTE - Trabalho 5</h3>
+                <span class="status pendente">Pendente</span>
+            </div>
+            <div class="trabalho-info">
+                <p><strong>Responsável:</strong> teste</p>
+                <p><strong>Data de Entrega:</strong> teste</p>
+                <p><strong>Descrição:</strong> teste</p>
+            </div>
+            <div class="trabalho-acoes">
+                <button class="btn-detalhes">Ver Detalhes</button>
+                <button class="btn-editar">Editar</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de Detalhes -->
+    <div id="modal-detalhes" class="modal" style="display: none;">
+        <div class="modal-content">
+            <span class="fechar-modal">&times;</span>
+            <h2>Detalhes do Trabalho</h2>
+            <div id="detalhes-conteudo">
+                <p><strong>Título:</strong> <span id="detalhe-titulo">teste</span></p>
+                <p><strong>Responsável:</strong> <span id="detalhe-responsavel">teste</span></p>
+                <p><strong>Data de Entrega:</strong> <span id="detalhe-data">teste</span></p>
+                <p><strong>Status:</strong> <span id="detalhe-status">teste</span></p>
+                <p><strong>Descrição Completa:</strong></p>
+                <p id="detalhe-descricao">teste</p>
+                <p><strong>Anexos:</strong> <span id="detalhe-anexos">teste</span></p>
+            </div>
+        </div>
+    </div>
+
+    <div id="voltar-equipe">
+        <a href="Entrar_Equipes.html">
+            <button id="btn-voltar">
+                ← Voltar para Equipes
+            </button>
+        </a>
+    </div>
+
+    <!-- ⬇️ JAVA SCRIPT AQUI ⬇️ -->
+    <script src="Js/storage.js"></script>
+    <script src="Js/trabalhos_lancados.js"></script>
+    <script src="Js/main.js"></script>
+</body>
+</html>

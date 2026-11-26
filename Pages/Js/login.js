@@ -1,38 +1,37 @@
 // login.js
-async function login() {
-    const email = document.getElementById('email').value;
+function login() {
+    const email = document.getElementById('email').value.trim();
     const senha = document.getElementById('senha').value;
-    
+
     if (!email || !senha) {
-        alert('Preencha todos os campos!');
+        alert('❌ Preencha todos os campos!');
         return;
     }
-    
+
     try {
-        const response = await fetch('http://localhost:5000/api/login', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify({
-                email: email,
-                senha: senha
-            })
-        });
-        
-        const data = await response.json();
-        
-        if (response.ok) {
-            // Salva dados do usuário
-            localStorage.setItem('usuario', JSON.stringify(data.usuario));
-            localStorage.setItem('tokenUsuario', 'token_' + Date.now());
-            
-            alert('✅ Login realizado com sucesso!');
-            window.location.href = 'Main_page.html';
-        } else {
-            alert('❌ Erro: ' + data.erro);
-        }
+        // Autentica usando o sistema de armazenamento local
+        const usuario = storage.autenticarUsuario(email, senha);
+
+        // Faz login (salva sessão)
+        storage.fazerLogin(usuario);
+
+        alert('✅ Login realizado com sucesso!\nBem-vindo, ' + usuario.nome + '!');
+        window.location.href = 'Main_page.html';
+
     } catch (error) {
-        alert('❌ Erro de conexão: ' + error.message);
+        alert('❌ Erro: ' + error.message);
+        console.error('Erro no login:', error);
     }
 }
+
+// Permite fazer login com Enter
+document.addEventListener('DOMContentLoaded', function() {
+    const inputs = document.querySelectorAll('input');
+    inputs.forEach(input => {
+        input.addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                login();
+            }
+        });
+    });
+});
