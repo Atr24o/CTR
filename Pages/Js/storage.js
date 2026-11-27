@@ -66,6 +66,41 @@ class StorageManager {
         return usuarios.find(u => u.id === id);
     }
 
+    atualizarUsuario(id, dados) {
+        const usuarios = this.getUsuarios();
+        const indice = usuarios.findIndex(usuario => usuario.id === id);
+
+        if (indice === -1) {
+            throw new Error('Usuário não encontrado!');
+        }
+
+        const email = dados.email.trim();
+        const emailEmUso = usuarios.some(usuario =>
+            usuario.id !== id && usuario.email.toLowerCase() === email.toLowerCase()
+        );
+
+        if (emailEmUso) {
+            throw new Error('Este email já está cadastrado!');
+        }
+
+        const usuarioAtualizado = {
+            ...usuarios[indice],
+            ...dados,
+            email
+        };
+
+        usuarios[indice] = usuarioAtualizado;
+        localStorage.setItem('usuarios', JSON.stringify(usuarios));
+
+        const usuarioLogado = this.getUsuarioLogado();
+        if (usuarioLogado && usuarioLogado.id === id) {
+            const { senha, avatar, ...dadosDaSessao } = usuarioAtualizado;
+            localStorage.setItem('usuarioLogado', JSON.stringify(dadosDaSessao));
+        }
+
+        return usuarioAtualizado;
+    }
+
     autenticarUsuario(email, senha) {
         const usuario = this.getUsuarioPorEmail(email);
         if (!usuario) {
@@ -79,7 +114,7 @@ class StorageManager {
 
     // ===== SESSÃO =====
     fazerLogin(usuario) {
-        const { senha, ...usuarioSemSenha } = usuario;
+        const { senha, avatar, ...usuarioSemSenha } = usuario;
         localStorage.setItem('usuarioLogado', JSON.stringify(usuarioSemSenha));
         localStorage.setItem('tokenUsuario', 'token_' + Date.now());
         return usuarioSemSenha;

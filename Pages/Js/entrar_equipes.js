@@ -37,6 +37,10 @@ function carregarMinhasEquipes() {
 
         if (equipes.length === 0) {
             container.innerHTML = '<div id="grupos"><p style="color: #999;">Você ainda não participa de nenhuma equipe</p></div>';
+            const membrosContainer = document.querySelector('#equipe .grid');
+            if (membrosContainer) {
+                membrosContainer.innerHTML = '<div id="membros"><p>Nenhuma equipe selecionada.</p></div>';
+            }
             return;
         }
 
@@ -123,14 +127,6 @@ function carregarMembrosEquipe(equipeId) {
             return;
         }
 
-        if (membros.length === 0) {
-            container.innerHTML = '<div id="membros"><p style="color: #999;">Nenhum membro ainda</p></div>';
-            return;
-        }
-
-        const usuarioLogado = storage.getUsuarioLogado();
-
-        // Atualiza título da seção
         const listaDiv = document.getElementById('lista');
         if (listaDiv) {
             const titulo = listaDiv.querySelector('p');
@@ -138,6 +134,13 @@ function carregarMembrosEquipe(equipeId) {
                 titulo.textContent = `Membros da equipe: ${equipe.nome}`;
             }
         }
+
+        if (membros.length === 0) {
+            container.innerHTML = '<div id="membros"><p style="color: #999;">Nenhum membro ainda</p></div>';
+            return;
+        }
+
+        const usuarioLogado = storage.getUsuarioLogado();
 
         membros.forEach(membro => {
             const div = document.createElement('div');

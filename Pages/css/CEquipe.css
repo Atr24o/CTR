@@ -1,6 +1,6 @@
 #convidar {
     top: 15%;
-    background-color: blanchedalmond;
+    background-color: var(--color-surface);
     height: 10%;
     width: 70%;
     position: absolute;
@@ -39,17 +39,19 @@
 .grid{
     height: auto;
     display: grid;
-    grid-template-rows: 10, 1fr;
+    grid-template-columns: 1fr;
     gap:  5px;
     overflow: hidden;
 }
 
 #membros{
-    background-color: #ffebcdc8;
+    background-color: var(--color-surface);
     width: auto;
     height: fit-content;
-    border-radius: 10px;
-    padding: 5px;
+    border: 1px solid rgba(81, 56, 48, 0.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(46, 34, 29, 0.06);
 }
 
 #convites{
@@ -73,11 +75,11 @@
 }
 
 #convite{
-    background: linear-gradient(135deg, #fff5e6 0%, #ffebcd 100%);
+    background: linear-gradient(135deg, #fffaf4 0%, var(--color-surface-warm) 100%);
     width: auto;
     height: auto;
     min-height: 160px;
-    border-radius: 15px;
+    border-radius: 14px;
     padding: 20px;
     box-shadow: 0 4px 12px rgba(81, 56, 48, 0.15);
     transition: all 0.3s ease;
@@ -97,8 +99,8 @@
 }
 
 #convite:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 20px rgba(81, 56, 48, 0.25);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-raised);
     border-color: #AA8370;
 }
 
@@ -118,7 +120,7 @@
 
 #convite button {
     width: 100%;
-    background: linear-gradient(135deg, #007bff 0%, #0056b3 100%);
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-hover) 100%);
     color: white;
     border: none;
     padding: 12px 20px;
@@ -128,15 +130,15 @@
     font-weight: bold;
     margin-top: 15px;
     transition: all 0.3s ease;
-    box-shadow: 0 3px 8px rgba(0, 123, 255, 0.3);
+    box-shadow: 0 3px 8px rgba(81, 56, 48, 0.2);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
 
 #convite button:hover {
-    background: linear-gradient(135deg, #0056b3 0%, #003d82 100%);
+    background: linear-gradient(135deg, var(--color-primary-hover) 0%, var(--color-border) 100%);
     transform: scale(1.02);
-    box-shadow: 0 5px 15px rgba(0, 123, 255, 0.4);
+    box-shadow: 0 5px 15px rgba(81, 56, 48, 0.24);
 }
 
 #convite button:active {
@@ -215,13 +217,19 @@ input {
     padding: 10px;
     border: 1px solid #513830;
     border-radius: 4px;
-    background-color: #ffebcdc8;
+    background-color: var(--color-surface);
     font-size: 16px;
     transition: all 0.3s ease;
 }
 
 input:hover{
-    background-color: #fce3bd;
+    background-color: #fffaf4;
+}
+
+input:focus {
+    border-color: var(--color-primary);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(170, 131, 112, 0.18);
 }
 
 input::placeholder {
@@ -274,15 +282,73 @@ input::placeholder {
     height: 20%;
     border-radius: 20px;
     border: 2px solid #3a261e;
-    background-color: #AA8370;
+    background-color: var(--color-primary);
     color: white;
-    font-size: 40px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-size: 32px;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
 }
 
 #criar:hover{
-    background-color: #785d50;
+    background-color: var(--color-primary-hover);
     color: rgb(198, 198, 198);
+}
+
+@media (max-width: 768px) {
+    #convidar {
+        position: static;
+        box-sizing: border-box;
+        width: auto;
+        height: auto;
+        margin: 20px 16px;
+    }
+
+    #convidar input {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    #lista {
+        position: static;
+        box-sizing: border-box;
+        width: auto;
+        height: auto;
+        margin: 20px 16px;
+        padding: 16px 0;
+        border-left: 0;
+        border-top: 2px solid #513830;
+        border-radius: 0;
+    }
+
+    #equipe {
+        max-height: 280px;
+        height: auto;
+    }
+
+    #criar {
+        position: static;
+        width: 100%;
+        height: auto;
+        min-height: 56px;
+        margin-top: 16px;
+        transform: none;
+        font-size: 28px;
+    }
+
+    #convites {
+        position: static;
+        box-sizing: border-box;
+        width: auto;
+        min-height: 0;
+        max-height: none;
+        margin: 20px 16px;
+        padding: 20px 0;
+    }
+
+    #convidados {
+        max-height: 400px;
+        height: auto;
+    }
 }

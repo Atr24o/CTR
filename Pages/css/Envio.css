@@ -7,10 +7,10 @@
     max-width: 800px;
     margin: 30px auto;
     padding: 40px;
-    background: linear-gradient(135deg, #fff5e6 0%, #ffebcd 100%);
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(81, 56, 48, 0.15);
-    border: 3px solid #AA8370;
+    background: linear-gradient(145deg, #fffaf4 0%, var(--color-surface-warm) 100%);
+    border-radius: 18px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(81, 56, 48, 0.2);
 }
 
 #formulario-envio h2 {
@@ -40,8 +40,8 @@
 .form-grupo textarea {
     width: 100%;
     padding: 12px;
-    border: 2px solid #AA8370;
-    border-radius: 10px;
+    border: 1px solid rgba(81, 56, 48, 0.25);
+    border-radius: 8px;
     font-size: 15px;
     color: #2e221d;
     box-sizing: border-box;
@@ -55,7 +55,7 @@
 .form-grupo select:focus,
 .form-grupo textarea:focus {
     outline: none;
-    border-color: #785d50;
+    border-color: var(--color-primary-hover);
     box-shadow: 0 0 0 3px rgba(170, 131, 112, 0.2);
 }
 
@@ -66,8 +66,8 @@
 
 .form-grupo input[type="file"] {
     padding: 10px;
-    border: 2px dashed #AA8370;
-    border-radius: 10px;
+    border: 1px dashed var(--color-primary);
+    border-radius: 8px;
     width: 100%;
     box-sizing: border-box;
     cursor: pointer;
@@ -87,7 +87,7 @@
     padding: 15px;
     background: rgba(170, 131, 112, 0.1);
     border-radius: 10px;
-    border: 2px solid #AA8370;
+    border: 1px solid rgba(81, 56, 48, 0.2);
 }
 
 #preview-anexos h4 {
@@ -109,7 +109,7 @@
     display: flex;
     justify-content: space-between;
     align-items: center;
-    border: 1px solid #AA8370;
+    border: 1px solid rgba(81, 56, 48, 0.12);
 }
 
 .checkbox-grupo {
@@ -154,30 +154,30 @@
 }
 
 #btn-enviar {
-    background-color: #AA8370;
+    background-color: var(--color-primary);
     color: white;
 }
 
 #btn-enviar:hover {
     background-color: #785d50;
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(170, 131, 112, 0.4);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
 }
 
 #btn-rascunho {
-    background-color: #74b9ff;
+    background-color: var(--color-primary-hover);
     color: white;
 }
 
 #btn-rascunho:hover {
-    background-color: #0984e3;
-    transform: scale(1.05);
+    background-color: var(--color-border);
+    transform: translateY(-1px);
 }
 
 #btn-cancelar {
     background-color: transparent;
     color: #AA8370;
-    border: 2px solid #AA8370;
+    border: 1px solid rgba(81, 56, 48, 0.16);
 }
 
 #btn-cancelar:hover {
@@ -188,10 +188,10 @@
     max-width: 800px;
     margin: 30px auto;
     padding: 30px;
-    background: linear-gradient(135deg, #fff5e6 0%, #ffebcd 100%);
-    border-radius: 20px;
-    box-shadow: 0 4px 12px rgba(81, 56, 48, 0.15);
-    border: 3px solid #AA8370;
+    background: linear-gradient(145deg, #fffaf4 0%, var(--color-surface-warm) 100%);
+    border-radius: 18px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid rgba(81, 56, 48, 0.2);
 }
 
 #lista-rascunhos h3 {
@@ -209,13 +209,13 @@
     background-color: rgba(170, 131, 112, 0.1);
     border-radius: 10px;
     margin-bottom: 15px;
-    border: 2px solid #AA8370;
+    border: 1px solid rgba(81, 56, 48, 0.16);
     transition: all 0.3s ease;
 }
 
 .rascunho-item:hover {
     background-color: rgba(170, 131, 112, 0.2);
-    transform: translateX(5px);
+    transform: translateY(-2px);
 }
 
 .rascunho-info h4 {
@@ -255,17 +255,17 @@
 
 .btn-carregar:hover {
     background-color: #785d50;
-    transform: scale(1.05);
+    transform: translateY(-1px);
 }
 
 .btn-excluir {
-    background-color: #ff7675;
+    background-color: #b94a48;
     color: white;
 }
 
 .btn-excluir:hover {
-    background-color: #d63031;
-    transform: scale(1.05);
+    background-color: #983d3b;
+    transform: translateY(-1px);
 }
 
 .modal {
@@ -282,18 +282,19 @@
 }
 
 .modal-content {
-    background: linear-gradient(135deg, #fff5e6 0%, #ffebcd 100%);
+    box-sizing: border-box;
+    background: linear-gradient(145deg, #fffaf4 0%, var(--color-surface-warm) 100%);
     padding: 40px;
-    border-radius: 20px;
+    border-radius: 18px;
     text-align: center;
     max-width: 400px;
     width: 90%;
-    box-shadow: 0 8px 30px rgba(46, 34, 29, 0.4);
-    border: 3px solid #AA8370;
+    box-shadow: var(--shadow-raised);
+    border: 1px solid rgba(81, 56, 48, 0.2);
 }
 
 .modal-content h2 {
-    color: #00b894;
+    color: #3d7454;
     margin-bottom: 20px;
     font-family: Arial, Helvetica, sans-serif;
 }
@@ -305,7 +306,7 @@
 }
 
 .modal-content button {
-    background-color: #AA8370;
+    background-color: var(--color-primary);
     color: white;
     border: none;
     padding: 10px 30px;
@@ -318,15 +319,20 @@
 }
 
 .modal-content button:hover {
-    background-color: #785d50;
-    transform: scale(1.05);
+    background-color: var(--color-primary-hover);
+    transform: translateY(-1px);
 }
 
 @media (max-width: 768px) {
     #formulario-envio,
     #lista-rascunhos {
-        padding: 20px;
-        margin: 20px;
+        box-sizing: border-box;
+        padding: 20px 16px;
+        margin: 20px 12px;
+    }
+
+    #formulario-envio h2 {
+        font-size: 24px;
     }
 
     #acoes-formulario {
@@ -350,5 +356,12 @@
     .btn-carregar,
     .btn-excluir {
         flex: 1;
+    }
+
+    .modal-content {
+        box-sizing: border-box;
+        max-height: calc(100vh - 32px);
+        overflow-y: auto;
+        padding: 24px 18px;
     }
 }

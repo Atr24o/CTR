@@ -31,16 +31,18 @@ p{
     height: fit-content;
     width: auto;
     display: grid;
-    grid-template-rows: 100, 1fr;
+    grid-template-columns: 1fr;
     gap:  5px;
 }
 
 #membros{
-    background-color: #ffebcdc8;
+    background-color: var(--color-surface);
     width: auto;
     height: fit-content;
-    border-radius: 10px;
-    padding: 5px;
+    border: 1px solid rgba(81, 56, 48, 0.12);
+    border-radius: 12px;
+    padding: 10px 12px;
+    box-shadow: 0 2px 8px rgba(46, 34, 29, 0.06);
 }
 
 #convites{
@@ -55,11 +57,12 @@ p{
 }
 
 #convite {
-    background-color: #ffebcdc8;
+    background-color: var(--color-surface);
     width: auto;
     height: 70px;
-    border-radius: 10px;
-    padding: 5px 10px;
+    border: 1px solid rgba(81, 56, 48, 0.12);
+    border-radius: 12px;
+    padding: 10px 12px;
     display: flex;
     align-items: center;
     position: relative;
@@ -113,10 +116,11 @@ p{
     height: 40%;
     border-radius: 20px;
     border: 2px solid #3a261e;
-    background-color: #AA8370;
+    background-color: var(--color-primary);
     color: white;
     font-size: 15px;
-    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
     cursor: pointer;
     transition: all 0.3s ease;
 }
@@ -147,11 +151,11 @@ p{
 }
 
 #grupos{
-    background-color: #ffebcdc8;
+    background-color: var(--color-surface);
     width: auto;
     height:100px;
     display: flex;
-    border-radius: 10px;
+    border-radius: 14px;
     flex-direction: column; /* Adicione esta linha */
     justify-content: center;
     align-items: center; /* Para centralizar horizontalmente */
@@ -234,19 +238,19 @@ p{
     padding: 14px;
     border: 2px solid transparent;
     border-radius: 15px;
-    background: #ffebcdc8;
+    background: var(--color-surface);
     display: flex;
     flex-direction: column;
     align-items: stretch;
     justify-content: flex-start;
-    box-shadow: 0 4px 12px rgba(81, 56, 48, 0.12);
+    box-shadow: var(--shadow-card);
     transition: all 0.3s ease;
 }
 
 #grupos:hover {
     border-color: #AA8370;
-    transform: translateY(-3px);
-    box-shadow: 0 8px 18px rgba(81, 56, 48, 0.22);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-raised);
 }
 
 #grupos h3 {
@@ -301,16 +305,72 @@ p{
 
 @media (max-width: 768px) {
     #grupo {
-        width: 90%;
-        height: 33%;
-        left: 5%;
+        position: static;
+        box-sizing: border-box;
+        width: auto;
+        height: auto;
+        margin: 20px 16px;
+        padding: 10px 0;
     }
 
     .hgrid {
-        grid-auto-columns: 220px;
+        grid-auto-columns: min(220px, calc(100vw - 48px));
     }
 
     #grupos {
-        width: 220px;
+        width: min(220px, calc(100vw - 48px));
+    }
+
+    #gps {
+        height: 260px;
+    }
+
+    #lista,
+    #convites {
+        position: static;
+        box-sizing: border-box;
+        width: auto;
+        height: auto;
+        margin: 20px 16px;
+        padding: 16px 0;
+        border-left: 0;
+        border-top: 2px solid #513830;
+        border-radius: 0;
+    }
+
+    #equipe {
+        max-height: 280px;
+        height: auto;
+    }
+
+    #convites {
+        overflow: visible;
+    }
+
+    #convidados {
+        max-height: 420px;
+        height: auto;
+    }
+
+    #convite {
+        box-sizing: border-box;
+        height: auto;
+        min-height: 100px;
+        flex-wrap: wrap;
+        gap: 8px;
+        padding: 12px;
+    }
+
+    #convite p {
+        flex-basis: 100%;
+        margin: 0;
+    }
+
+    #convite button {
+        box-sizing: border-box;
+        width: auto;
+        min-width: 90px;
+        height: 40px;
+        flex: 1;
     }
 }

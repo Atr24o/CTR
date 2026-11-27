@@ -10,20 +10,27 @@ h2{
     margin-bottom: 50px;
 }
 
+#CadLog h2 {
+    font-family: Arial, Helvetica, sans-serif;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+}
+
 #CadLog{
     padding: 0 0 20px 0;
     justify-items: center;
     text-align: center;
-    border:#513830 2px solid;
-    border-radius: 60px;
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
     position: absolute;
-    background-color: #AA8370;
+    background: linear-gradient(145deg, #b78f7c 0%, var(--color-primary) 100%);
     height: fit-content;
     width: 50%;
     left: 50%;
     top: 84px;
     transform: translateX(-50%);
     margin-bottom: 30px;
+    box-shadow: var(--shadow-card);
 }
 
 #Cad{
@@ -44,14 +51,22 @@ h2{
 .grupo-input label {
     font-size: 14px;
     font-weight: bold;
-    color: white;
+    color: #fffaf6;
 }
 
 .grupo-input input {
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    border: 1px solid rgba(81, 56, 48, 0.3);
+    border-radius: 8px;
     font-size: 16px;
+    color: var(--color-text);
+    background-color: #fffdfb;
+}
+
+.grupo-input input:focus {
+    border-color: var(--color-primary-hover);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(120, 93, 80, 0.18);
 }
 
 /* Estiliza o texto cinza (placeholder) */
@@ -64,16 +79,23 @@ button {
     margin-top: 20px;
     height: 40px;
     width: 300px;
-    border-radius: 25px;
-    background-color: #d2ae9c;
-    border: #513830 2px solid;
+    border-radius: 10px;
+    background-color: var(--color-primary-hover);
+    color: white;
+    border: 1px solid var(--color-border);
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 15px;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    cursor: pointer;
     transition: all 0.3s ease;
 }
-button:hover{
-    background-color: #513830;
+
+button:hover {
+    background-color: var(--color-text);
     color: white;
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
 }
 
 p{
@@ -87,4 +109,53 @@ a{
 small {
     color: #513830;
     margin-bottom: 5px;
+}
+
+@media (max-width: 768px) {
+    body {
+        display: flex;
+        position: relative;
+        min-height: 100vh;
+        min-height: 100svh;
+        flex-direction: column;
+    }
+
+    h2 {
+        font-size: 36px;
+        margin-bottom: 24px;
+    }
+
+    #CadLog {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        box-sizing: border-box;
+        width: calc(100% - 32px);
+        margin: auto;
+        padding: 20px 16px;
+        border-radius: 24px;
+    }
+
+    .grupo-input {
+        box-sizing: border-box;
+        width: min(300px, 100%);
+    }
+
+    .grupo-input input,
+    .grupo-input button {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    body .auth-mobile-back {
+        position: absolute;
+        top: 76px;
+        left: 16px;
+        z-index: 1;
+        min-height: 32px;
+        margin: 0;
+        padding: 4px 12px;
+        font-size: 13px;
+    }
 }

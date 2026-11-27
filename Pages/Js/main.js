@@ -23,28 +23,41 @@ function getUsuarioLogado() {
 function atualizarInterfaceUsuario() {
     const botaoUser = document.getElementById('user');
     const usuario = getUsuarioLogado();
+    const linkUsuario = botaoUser ? botaoUser.closest('a') : null;
 
     if (botaoUser) {
         if (usuario) {
+            const perfil = storage.getUsuarioPorId(usuario.id);
             botaoUser.setAttribute('data-text', usuario.nome || 'Usuário');
+            if (linkUsuario) {
+                linkUsuario.href = 'Perfil.html';
+            }
+
             const icon = botaoUser.querySelector('img');
             if (icon) {
+                icon.src = perfil && perfil.avatar ? perfil.avatar : 'css/images/User.png';
                 icon.style.border = '2px solid #4caf50';
                 icon.style.borderRadius = '50%';
             }
-            // Adiciona evento de clique para logout
-            botaoUser.onclick = function() {
-                if (confirm('Deseja sair da sua conta?')) {
-                    fazerLogout();
-                }
+
+            botaoUser.onclick = function(event) {
+                event.preventDefault();
+                window.location.href = 'Perfil.html';
             };
         } else {
             botaoUser.setAttribute('data-text', 'Visitante');
+            if (linkUsuario) {
+                linkUsuario.href = 'Login.html';
+            }
+
             const icon = botaoUser.querySelector('img');
             if (icon) {
+                icon.src = 'css/images/User.png';
                 icon.style.border = 'none';
             }
-            botaoUser.onclick = function() {
+
+            botaoUser.onclick = function(event) {
+                event.preventDefault();
                 window.location.href = 'Login.html';
             };
         }
@@ -91,12 +104,62 @@ function redirecionarSeNaoLogado() {
     }
 }
 
+function iniciarBannerSlideshow() {
+    const imagemBanner = document.getElementById('banner-imagem');
+    const envelopes = document.querySelectorAll('.envelope-banner');
+    if (!imagemBanner || envelopes.length === 0 || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        return;
+    }
+
+    const slides = [
+        {
+            src: 'css/images/home-office.jpg',
+            alt: 'Notebook em uma estação de trabalho em casa'
+        },
+        {
+            src: 'css/images/trabalho-remoto.jpg',
+            alt: 'Estação de trabalho com uma chamada de vídeo em andamento'
+        }
+    ];
+    let indiceAtual = 0;
+    const duracaoTransicao = 1800;
+    const momentoTrocaImagem = duracaoTransicao / 2;
+    const tempoExibicao = 7000;
+
+    slides.forEach(function(slide) {
+        const imagem = new Image();
+        imagem.src = slide.src;
+    });
+
+    function trocarImagem() {
+        imagemBanner.classList.add('is-fading');
+        envelopes.forEach(function(envelope) {
+            envelope.classList.add('is-sending');
+        });
+        window.setTimeout(function() {
+            indiceAtual = (indiceAtual + 1) % slides.length;
+            imagemBanner.src = slides[indiceAtual].src;
+            imagemBanner.alt = slides[indiceAtual].alt;
+            imagemBanner.classList.remove('is-fading');
+        }, momentoTrocaImagem);
+        window.setTimeout(function() {
+            envelopes.forEach(function(envelope) {
+                envelope.classList.remove('is-sending');
+            });
+            window.setTimeout(trocarImagem, tempoExibicao);
+        }, duracaoTransicao);
+    }
+
+    window.setTimeout(trocarImagem, tempoExibicao);
+}
+
 // ===== INICIALIZAÇÃO =====
 function iniciarPagina() {
     console.log('🚀 Inicializando página...');
 
     usuarioLogado = verificarSessao();
     atualizarInterfaceUsuario();
+    iniciarBannerSlideshow();
 
     const linkEntrar = document.getElementById('linkEntrar');
     const linkCriar = document.getElementById('linkCriar');

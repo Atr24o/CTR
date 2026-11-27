@@ -1,5 +1,5 @@
 #intro{
-    background: #AA8370;
+    background: var(--color-primary);
     width: 80%;
     height:60%;
     position: absolute;
@@ -8,50 +8,107 @@
     border-radius: 20px;
     transform: translateY(-50%) translateX(-50%);
     overflow: hidden;
-    filter: drop-shadow(0px 4px 10px #AA8370);
+    filter: drop-shadow(0px 6px 16px rgba(46, 34, 29, 0.18));
 }
 
 
-#intro #dir{
-    right: -50px;
-    border-radius: 0px 20px 20px 0px;
+#intro #banner-imagem {
+    position: absolute;
+    inset: 0;
+    width: 100%;
     height: 100%;
-    width: auto;
     object-fit: cover;
-    position: absolute;
-    mask-image: linear-gradient(to left, rgba(0,0,0,1)0%, rgba(0,0,0,1)95%, rgba(0,0,0,0)100%);
+    opacity: 1;
+    transition: opacity 0.9s ease-in-out;
 }
 
-#intro #esq{
-    left: -150px;
-    border-radius: 20px 0px 0px 20px;
-    height: 100%;
-    width: auto;
-    object-fit: cover;
-    position: absolute;
+#intro #banner-imagem.is-fading {
+    opacity: 0;
 }
 
-#carta{
-    height: 30%;
-    width: auto;
+#intro .envelope-banner {
+    --envelope-top: 58%;
+    --envelope-delay: 0s;
     position: absolute;
-    left: 49%;
-    top: 50%;
-    transform: translateY(-50%) translateX(-50%) scaleX(-1);
-    filter: hue-rotate(10deg) brightness(400%)
+    top: var(--envelope-top);
+    left: 0;
+    z-index: 5;
+    width: clamp(56px, 8vw, 96px);
+    height: auto;
+    opacity: 0;
+    pointer-events: none;
+    filter: brightness(0) invert(1) drop-shadow(0 3px 5px rgba(46, 34, 29, 0.55));
+    transform: translate(-100%, -50%);
 }
 
-#slogan{
-    color: white;
+#intro .envelope-banner--first {
+    --envelope-top: 48%;
+}
+
+#intro .envelope-banner--second {
+    --envelope-top: 58%;
+    --envelope-delay: 0.09s;
+}
+
+#intro .envelope-banner--third {
+    --envelope-top: 68%;
+    --envelope-delay: 0.18s;
+}
+
+#intro .envelope-banner.is-sending {
+    animation: enviar-envelope 1.8s ease-in-out var(--envelope-delay) forwards;
+}
+
+@keyframes enviar-envelope {
+    0% {
+        left: 0;
+        opacity: 0;
+        transform: translate(-100%, -50%) rotate(-12deg);
+    }
+
+    10%,
+    85% {
+        opacity: 1;
+    }
+
+    50% {
+        transform: translate(-100%, -50%) rotate(0);
+    }
+
+    100% {
+        left: 100%;
+        opacity: 0;
+        transform: translate(-100%, -50%) rotate(12deg);
+    }
+}
+
+#slogan {
+    box-sizing: border-box;
+    max-width: calc(100% - 32px);
+    margin: 0;
+    padding: 9px 20px;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 14px;
+    background: rgba(255, 248, 238, 0.78);
+    box-shadow: 0 6px 22px rgba(46, 34, 29, 0.16);
+    backdrop-filter: blur(6px);
+    color: #2e221d;
     position: absolute;
     left: 50%;
-    top: 0%;
-    transform: translateY(-50%) translateX(-50%);
+    top: 20px;
+    transform: translateX(-50%);
     z-index: 10;
-    -webkit-text-stroke: 1px black;
-    font-size: 40px;
+    font-size: clamp(22px, 2.3vw, 32px);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
     font-family: Arial, Helvetica, sans-serif;
     text-align: center;
+    white-space: nowrap;
+}
+
+#slogan-mobile {
+    display: none;
 }
 
 #grid {
@@ -69,7 +126,7 @@
 }
 
 #grid button{
-    background-color: #AA8370;
+    background-color: var(--color-primary);
     height: 50px;
     width: 100%;
     border: none;
@@ -79,23 +136,24 @@
     font-weight: bold;
     font-family: Arial, Helvetica, sans-serif;
     cursor: pointer;
-    transition: all 0.3s ease;  
+    box-shadow: var(--shadow-card);
+    transition: background-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 #grid button:hover{
-    background-color: #785d50;
-    transform: scale(1.05);
-    box-shadow: 0 4px 15px rgba(0,0,0,0.3);
+    background-color: var(--color-primary-hover);
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-raised);
 }
 
 .modal {
     display: none;
     position: fixed;
-    top: 110%;
+    top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.5);
+    background: rgba(46, 34, 29, 0.62);
     z-index: 1000;
     justify-content: center;
     align-items: center;
@@ -103,9 +161,10 @@
 }
 
 .modal-content {
-    background: white;
+    background: var(--color-surface);
     padding: 30px;
-    border-radius: 10px;
+    border-radius: 16px;
+    border: 1px solid rgba(81, 56, 48, 0.14);
     max-width: 400px;
     width: 90%;
     text-align: center;
@@ -115,32 +174,33 @@
 
 .modal-content h3 {
     font-family: Arial, Helvetica, sans-serif;
-    color: #333;
+    color: var(--color-text);
     margin-bottom: 15px;
     font-size: 20px;
 }
 
 .modal-content p {
     font-family: Arial, Helvetica, sans-serif;
-    color: #666;
+    color: var(--color-muted);
     margin-bottom: 20px;
     font-size: 16px;
     line-height: 1.5;
 }
 
 .modal-btn {
-    background: #007bff;
+    background: var(--color-primary);
     color: white;
     border: none;
     padding: 10px 30px;
-    border-radius: 5px;
+    border-radius: 8px;
     cursor: pointer;
     font-size: 16px;
+    font-weight: 700;
     transition: background 0.3s ease;
 }
 
 .modal-btn:hover {
-    background: #0056b3;
+    background: var(--color-primary-hover);
 }
 
 /* Animações */
@@ -161,5 +221,70 @@
     to {
         transform: translateY(0);
         opacity: 1;
+    }
+}
+
+@media (max-width: 768px) {
+    #intro {
+        position: relative;
+        top: auto;
+        left: auto;
+        transform: none;
+        box-sizing: border-box;
+        width: calc(100% - 32px);
+        height: auto;
+        min-height: 320px;
+        margin: 24px auto 0;
+    }
+
+    #slogan {
+        display: none;
+    }
+
+    #slogan-mobile {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-sizing: border-box;
+        width: calc(100% - 32px);
+        min-height: 100px;
+        margin: 16px auto 0;
+        padding: 18px 16px;
+        border: 2px solid #AA8370;
+        border-radius: 20px;
+        background: linear-gradient(135deg, #fff5e6 0%, #ffebcd 100%);
+        box-shadow: 0 4px 12px rgba(81, 56, 48, 0.15);
+        text-align: center;
+    }
+
+    #slogan-mobile p {
+        margin: 0;
+        color: #2e221d;
+        font-family: Arial, Helvetica, sans-serif;
+        font-size: clamp(24px, 7vw, 34px);
+        font-weight: bold;
+        line-height: 1.2;
+    }
+
+    #grid {
+        position: static;
+        box-sizing: border-box;
+        width: calc(100% - 32px);
+        height: auto;
+        grid-template-columns: 1fr;
+        gap: 12px;
+        margin: 32px auto 24px;
+        padding: 0;
+        transform: none;
+    }
+
+    #grid a,
+    #grid button {
+        box-sizing: border-box;
+        width: 100%;
+    }
+
+    #grid button {
+        margin-top: 0;
     }
 }

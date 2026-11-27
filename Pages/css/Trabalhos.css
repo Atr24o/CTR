@@ -44,8 +44,8 @@
 #btn-gerenciar-membros:hover {
     background-color: #785d50;
     color: #f7eee7;
-    transform: scale(1.04);
-    box-shadow: 0 4px 15px rgba(81, 56, 48, 0.25);
+    transform: translateY(-1px);
+    box-shadow: var(--shadow-card);
 }
 
 #filtros {
@@ -77,6 +77,11 @@
     outline: none;
 }
 
+#filtro-status:focus-visible {
+    outline: 3px solid rgba(120, 93, 80, 0.65);
+    outline-offset: 2px;
+}
+
 #lista-trabalhos {
     display: grid;
     gap: 18px;
@@ -88,17 +93,17 @@
 .trabalho-card {
     overflow: hidden;
     padding: 22px;
-    border: 2px solid #513830;
-    border-radius: 20px;
-    background: #ffebcdc8;
-    box-shadow: 0 4px 12px rgba(81, 56, 48, 0.14);
-    transition: all 0.3s ease;
+    border: 1px solid rgba(81, 56, 48, 0.2);
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-card);
+    transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
 }
 
 .trabalho-card:hover {
-    transform: translateY(-3px);
-    border-color: #AA8370;
-    box-shadow: 0 8px 20px rgba(81, 56, 48, 0.22);
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-raised);
 }
 
 .trabalho-header {
@@ -213,7 +218,7 @@
 .btn-status:hover,
 .btn-progresso:hover {
     background: #785d50;
-    transform: scale(1.04);
+    transform: translateY(-1px);
 }
 
 .btn-deletar {
@@ -222,7 +227,7 @@
 
 .btn-deletar:hover {
     background: #3a261e;
-    transform: scale(1.04);
+    transform: translateY(-1px);
 }
 
 .modal {
@@ -242,10 +247,10 @@
     max-height: 85vh;
     overflow-y: auto;
     padding: 30px;
-    border: 2px solid #513830;
-    border-radius: 20px;
-    background: #ffebcd;
-    box-shadow: 0 8px 30px rgba(46, 34, 29, 0.42);
+    border: 1px solid rgba(81, 56, 48, 0.2);
+    border-radius: 16px;
+    background: var(--color-surface);
+    box-shadow: var(--shadow-raised);
 }
 
 .modal-content h2,
@@ -278,7 +283,7 @@
 
 .fechar-modal:hover {
     color: #AA8370;
-    transform: scale(1.1);
+    transform: translateY(-1px);
 }
 
 .modal-content input,
@@ -315,7 +320,7 @@
 
 .modal-content button:hover {
     background: #785d50 !important;
-    transform: scale(1.03);
+    transform: translateY(-1px);
 }
 
 .modal-content hr {
@@ -352,7 +357,7 @@
 #btn-voltar:hover {
     background: #513830;
     color: white;
-    transform: scale(1.03);
+    transform: translateY(-1px);
 }
 
 .modal-content::-webkit-scrollbar,
